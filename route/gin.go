@@ -1,4 +1,4 @@
-package infrastructure
+package route
 
 import (
 	"devmentor-BE103-golang/handler/general"
