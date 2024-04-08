@@ -6,6 +6,12 @@ import (
 )
 
 func main() {
+
+	dbErr := infrastructure.InitMySQL()
+	if dbErr != nil {
+		log.Fatal(dbErr)
+	}
+
 	_, err := infrastructure.InitGinServer()
 	if err != nil {
 		log.Fatal(err)
