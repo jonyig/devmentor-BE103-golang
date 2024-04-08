@@ -24,6 +24,10 @@ func (post *Post) FindAll() error {
 	return post.model().Find(&post).Error
 }
 
+func (post *Post) Create() error {
+	return post.model().Create(post).Error
+}
+
 type Posts []Post
 
 func (posts *Posts) model() *gorm.DB { return infrastructure.Db.Model(posts) }
