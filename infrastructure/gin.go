@@ -1,8 +1,9 @@
 package infrastructure
 
 import (
+	"devmentor-BE103-golang/handler/general"
+	"devmentor-BE103-golang/handler/post"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 func InitGinServer() (server *gin.Engine, err error) {
@@ -13,17 +14,11 @@ func InitGinServer() (server *gin.Engine, err error) {
 
 func GinRouter() (server *gin.Engine) {
 	server = gin.New()
-	server.GET("/test", test)
+
+	group := server.Group("")
+
+	post.NewPosts(group)
+	general.NewGeneral(group)
 
 	return server
-}
-
-type TestData struct {
-	Hello string `json:"hello"`
-}
-
-func test(c *gin.Context) {
-	data := new(TestData)
-	data.Hello = "world!"
-	c.JSON(http.StatusOK, data)
 }
