@@ -20,4 +20,5 @@ func newRoute(h *Post, r *gin.RouterGroup) {
 	Group := r.Group("posts")
 
 	Group.GET("", h.get)
+	Group.POST("", h.create)
 }
