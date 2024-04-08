@@ -17,6 +17,7 @@ func NewPosts(
 }
 
 func newRoute(h *Post, r *gin.RouterGroup) {
-	//Group := r.Group(APIV2Prefix)
+	Group := r.Group("posts")
 
+	Group.GET("", h.get)
 }
