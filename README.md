@@ -17,3 +17,21 @@
 # Reference
 
 - https://github.com/golang-migrate/migrate
+
+
+# Example API
+
+## List Post
+```
+curl --location '127.0.0.1:8080/posts'
+```
+
+## Create Post
+```
+curl --location '127.0.0.1:8080/posts' \
+--header 'Content-Type: application/json' \
+--data '{
+    "title":"12344rr",
+    "content" : "1333"
+}'
+```
