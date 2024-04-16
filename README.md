@@ -11,13 +11,24 @@
 
 3. Check API document
     ```
-   localhots:8000
+   localhost:8000
    ```
 
 # Reference
 
 - https://github.com/golang-migrate/migrate
 
+# DB Migrations
+## Up
+Please run migration up after container mysql is set
+```
+migration-up
+```
+
+## Down
+```
+migration-down
+```
 
 # Example API
 
