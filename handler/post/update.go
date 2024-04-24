@@ -11,7 +11,7 @@ func (h *Post) updatePost(c *gin.Context) {
 	id := c.Param("id")
 	post := database.Post{}
 
-	err := post.Model().Find(&post, id).Error
+	err := post.FindById(id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

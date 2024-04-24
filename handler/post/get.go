@@ -24,11 +24,11 @@ func (h *Post) getByID(c *gin.Context) {
 	id := c.Param("id")
 	post := database.Post{}
 
-	err := post.Model().Find(&post, id).Error
+	err := post.FindById(id).Error
 
 	if err != nil {
 		logrus.Error(err)
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
 	c.JSON(http.StatusOK, post)

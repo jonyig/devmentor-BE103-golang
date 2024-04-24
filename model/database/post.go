@@ -17,21 +17,33 @@ type Post struct {
 func (Post) TableName() string {
 	return "posts"
 }
-func (post *Post) Model() *gorm.DB { return infrastructure.Db.Model(post) }
+
+func (post *Post) model() *gorm.DB { return infrastructure.Db.Model(post) }
+
 func (post *Post) FindAll() error {
-	return post.Model().Find(&post).Error
+	return post.model().Find(&post).Error
 }
-func (post *Post) Create() error {
-	return post.Model().Create(post).Error
+
+func (post *Post) FindById(id string) error {
+	return post.model().Find(&post, id).Error
 }
 
 func (post *Post) Update(updateData Post) error {
-	return post.Model().Updates(updateData).Error
+	return post.model().Updates(updateData).Error
+}
+
+func (post *Post) Delete() error {
+	return post.model().Delete(post).Error
+}
+
+func (post *Post) Create() error {
+	return post.model().Create(post).Error
 }
 
 type Posts []Post
 
 func (posts *Posts) model() *gorm.DB { return infrastructure.Db.Model(posts) }
+
 func (posts *Posts) FindAll() error {
 	return posts.model().Find(&posts).Error
 }

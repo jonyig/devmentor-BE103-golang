@@ -10,13 +10,13 @@ func (h *Post) deletePost(c *gin.Context) {
 	id := c.Param("id")
 	post := database.Post{}
 
-	err := post.Model().Find(&post, id).Error
+	err := post.FindById(id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	err = post.Model().Find(&post, id).Delete(&post).Error
+	err = post.Delete()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
