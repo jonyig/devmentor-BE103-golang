@@ -24,12 +24,7 @@ func (h *Post) updatePost(c *gin.Context) {
 		return
 	}
 
-	updateData := database.Post{
-		Title:   f.Title,
-		Content: f.Content,
-	}
-
-	err = post.Update(updateData)
+	err = post.Update(&f)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
