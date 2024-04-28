@@ -1,7 +1,6 @@
 package database
 
 import (
-	"errors"
 	"gorm.io/gorm"
 	"shopping-cart/infrastructure"
 	"shopping-cart/model/datatransfer"
@@ -31,10 +30,6 @@ func (post *Post) FindById(id string) error {
 }
 
 func (post *Post) Update(updatePayload *datatransfer.PostCreate) error {
-	if updatePayload.Title == "" && updatePayload.Content == "" {
-		return errors.New("update data is empty")
-	}
-
 	updateData := Post{
 		Title:   updatePayload.Title,
 		Content: updatePayload.Content,
