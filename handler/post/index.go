@@ -1,15 +1,21 @@
 package post
 
-import "github.com/gin-gonic/gin"
+import (
+	"devmentor-BE103-golang/repository"
+	"github.com/gin-gonic/gin"
+)
 
 type Post struct {
+	postRepository repository.PostRepositoryInterface
 }
 
 func NewPosts(
 	r *gin.RouterGroup,
 
 ) *Post {
-	h := &Post{}
+	h := &Post{
+		postRepository: repository.NewPostRepository(),
+	}
 
 	newRoute(h, r)
 
