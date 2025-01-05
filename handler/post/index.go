@@ -9,7 +9,7 @@ type Post struct {
 	postService service.PostServiceInterface
 }
 
-func NewPosts(
+func NewPost(
 	r *gin.RouterGroup,
 
 ) *Post {
