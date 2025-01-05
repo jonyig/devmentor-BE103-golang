@@ -1,12 +1,12 @@
 package post
 
 import (
-	"devmentor-BE103-golang/repository"
+	"devmentor-BE103-golang/service"
 	"github.com/gin-gonic/gin"
 )
 
 type Post struct {
-	postRepository repository.PostRepositoryInterface
+	postService service.PostServiceInterface
 }
 
 func NewPosts(
@@ -14,7 +14,7 @@ func NewPosts(
 
 ) *Post {
 	h := &Post{
-		postRepository: repository.NewPostRepository(),
+		postService: service.NewPostService(nil),
 	}
 
 	newRoute(h, r)

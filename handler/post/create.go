@@ -20,7 +20,7 @@ func (h *Post) create(c *gin.Context) {
 		Title:   f.Title,
 		Content: f.Content,
 	}
-	err = h.postRepository.Create(post)
+	err = h.postService.Create(post)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

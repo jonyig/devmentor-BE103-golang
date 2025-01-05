@@ -7,7 +7,7 @@ import (
 )
 
 func (h *Post) get(c *gin.Context) {
-	posts, err := h.postRepository.FindAll()
+	posts, err := h.postService.FindAll()
 	if err != nil {
 		logrus.Error(err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
