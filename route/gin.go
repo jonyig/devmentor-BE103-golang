@@ -17,7 +17,6 @@ func GinRouter() (server *gin.Engine) {
 
 	group := server.Group("")
 
-	//post.NewPosts(group)
 	post.NewPost(group)
 	general.NewGeneral(group)
 
