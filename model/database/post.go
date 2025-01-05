@@ -2,6 +2,7 @@ package database
 
 import (
 	"devmentor-BE103-golang/infrastructure"
+	"fmt"
 	"gorm.io/gorm"
 	"time"
 )
@@ -20,8 +21,8 @@ func (Post) TableName() string {
 
 func (post *Post) model() *gorm.DB { return infrastructure.Db.Model(post) }
 
-func (post *Post) FindAll() error {
-	return post.model().Find(&post).Error
+func (post *Post) FindOne() error {
+	return post.model().First(post).Error
 }
 
 func (post *Post) Create() error {
@@ -33,5 +34,12 @@ type Posts []Post
 func (posts *Posts) model() *gorm.DB { return infrastructure.Db.Model(posts) }
 
 func (posts *Posts) FindAll() error {
-	return posts.model().Find(&posts).Error
+	return posts.model().FindInBatches(posts, 100, func(tx *gorm.DB, batch int) error {
+		fmt.Printf("第 %d 批，查詢到 %d 筆資料：\n", batch, len(*posts))
+		for _, user := range *posts {
+			fmt.Printf("ID: %d, Name: %s, Age: %d\n", user.Title, user.Content, user.CreatedAt)
+		}
+
+		return nil
+	}).Error
 }
