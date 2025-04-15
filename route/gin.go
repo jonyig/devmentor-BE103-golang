@@ -3,12 +3,13 @@ package route
 import (
 	"devmentor-BE103-golang/handler/general"
 	"devmentor-BE103-golang/handler/post"
+
 	"github.com/gin-gonic/gin"
 )
 
 func InitGinServer() (server *gin.Engine, err error) {
 	server = GinRouter()
-	err = server.Run("127.0.0.1:8080")
+	err = server.Run("127.0.0.1:8000")
 	return
 }
 
